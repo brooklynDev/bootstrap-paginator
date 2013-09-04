@@ -204,25 +204,26 @@
                 page = event.data.page;
 
             this.$element.trigger("page-clicked", [event, type, page]);
+            if(this.options.updateIndicatorOnClick){
+                //show the corresponding page and retrieve the newly built item related to the page clicked before for the event return
+                switch (type) {
 
-            //show the corresponding page and retrieve the newly built item related to the page clicked before for the event return
-            switch (type) {
-
-            case "first":
-                this.showFirst();
-                break;
-            case "prev":
-                this.showPrevious();
-                break;
-            case "next":
-                this.showNext();
-                break;
-            case "last":
-                this.showLast();
-                break;
-            case "page":
-                this.show(page);
-                break;
+                case "first":
+                    this.showFirst();
+                    break;
+                case "prev":
+                    this.showPrevious();
+                    break;
+                case "next":
+                    this.showNext();
+                    break;
+                case "last":
+                    this.showLast();
+                    break;
+                case "page":
+                    this.show(page);
+                    break;
+                }
             }
 
         },
@@ -556,6 +557,7 @@
         onPageChanged: null,
         useBootstrapTooltip: false,
         shouldShowPage: true,
+        updateIndicatorOnClick: true,
         itemTexts: function (type, page, current) {
             switch (type) {
             case "first":
